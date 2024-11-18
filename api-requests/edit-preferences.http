@@ -1,0 +1,37 @@
+@hostname = alfresco-adf-showcase
+@port = 8080
+@contentType = application/json
+@api-endpoint = alfresco/api/-default-/public/alfresco/versions/1
+@user= admin
+@password=
+### 
+
+GET http://{{hostname}}:{{port}}/{{api-endpoint}}/people/{{user}}/preferences
+Content-Type: {{contentType}}
+Authorization: Basic {{user}}:{{user}}
+
+### 
+
+POST http://{{hostname}}:{{port}}/share/page/dologin
+Content-Type: application/x-www-form-urlencoded
+
+username={{user}}&password={{password}}
+
+###
+
+POST http://{{hostname}}:{{port}}/share/proxy/alfresco/api/people/admin/preferences
+Content-Type: {{contentType}} 
+
+{
+    "org": {
+        "alfresco": {
+            "share": {
+                "documentList": {
+                    "sortAscending": false,
+                    "viewRendererName": "simple"
+                }
+            }
+        }
+    }
+}
+

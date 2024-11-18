@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"name": "alfresco-adf-acs-showcase",
+			"path": "alfresco-adf-acs-showcase"
+		},
+		{
+			"name": "api-requests",
+			"path": "api-requests"
+		},
+		{
+			"path": "alfresco-ng2-components"
+		}
+	],
+	"settings": {
+		"prettier.useEditorConfig": true,
+	}
+}
