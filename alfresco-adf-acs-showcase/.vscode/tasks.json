@@ -1,13 +1,18 @@
 {
-	"version": "2.0.0",
-	"tasks": [
+    "version": "2.0.0",
+    "tasks": [
         {
             "type": "npm",
             "script": "start",
             "group": "build",
             "problemMatcher": [],
             "label": "npm: start",
-            "detail": "ng serve app"
+            "detail": "ng serve app with host",
+            "options": {
+                "env": {
+                    "HOST_NAME": "https://${input:hostname}"
+                }
+            },
         },
         {
             "type": "npm",
@@ -16,6 +21,14 @@
             "problemMatcher": [],
             "label": "npm: build",
             "detail": "ng build app"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "hostname",
+            "type": "promptString",
+            "description": "type in hostname of remote alfresco server",
+            "default": "localhost"
         }
     ]
 }
