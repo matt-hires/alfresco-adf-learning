@@ -21,47 +21,59 @@ import { NodesApiService } from '@alfresco/adf-content-services';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-file-view',
-  templateUrl: 'file-view.component.html',
-  styleUrls: ['file-view.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-file-view',
+    templateUrl: 'file-view.component.html',
+    styleUrls: ['file-view.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class FileViewComponent implements OnInit {
-  nodeId: string = null;
+    nodeId: string = null;
+    versionId: string = null;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private snackBar: MatSnackBar,
-    private nodeApiService: NodesApiService
-  ) {}
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        private snackBar: MatSnackBar,
+        private nodeApiService: NodesApiService
+    ) { }
 
-  ngOnInit() {
-    this.route.params.subscribe((params) => {
-      const id = params.nodeId;
-      if (id) {
-        this.nodeApiService.getNode(id).subscribe(
-          (node) => {
-            if (node && node.isFile) {
-              this.nodeId = id;
-              return;
+    ngOnInit() {
+        this.route.params.subscribe((params) => {
+            const id = params.nodeId;
+            if (id) {
+                this.nodeApiService.getNode(id).subscribe(
+                    (node) => {
+                        if (node && node.isFile) {
+                            this.nodeId = id;
+                            this.versionId = node?.properties['cm:versionLabel'] ?? '';
+                            return;
+                        }
+                        this.router.navigate(['/files', id]);
+                    },
+                    () => this.router.navigate(['/files', id])
+                );
             }
-            this.router.navigate(['/files', id]);
-          },
-          () => this.router.navigate(['/files', id])
-        );
-      }
-    });
-  }
+        });
+    }
 
-  onUploadError(errorMessage: string) {
-    this.snackBar.open(errorMessage, '', { duration: 4000 });
-  }
+    onUploadError(errorMessage: string) {
+        this.snackBar.open(errorMessage, '', { duration: 4000 });
+    }
 
-  onViewerVisibilityChanged() {
-    const primaryUrl = this.router
-      .parseUrl(this.router.url)
-      .root.children[PRIMARY_OUTLET].toString();
-    this.router.navigateByUrl(primaryUrl);
-  }
+    onViewerVisibilityChanged() {
+        const primaryUrl = this.router
+            .parseUrl(this.router.url)
+            .root.children[PRIMARY_OUTLET].toString();
+        this.router.navigateByUrl(primaryUrl);
+    }
+
+    onRefresh() {
+        console.log("Refreshing document");
+
+        this.nodeApiService.getNode(this.nodeId)
+            .subscribe(node => {
+                this.versionId = node?.properties['cm:versionLabel'] ?? '';
+                console.log(`Update node ${node.id} to version: ${this.versionId}`);
+            });
+    }
 }
