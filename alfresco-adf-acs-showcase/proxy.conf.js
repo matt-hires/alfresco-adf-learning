@@ -16,11 +16,11 @@ module.exports = {
     "/alfresco": {
         target: env.HOST_NAME,
         secure: false,
-        changeOrigin: true,
-        bypass: function (req, res, proxyOptions) {
-            req.headers["origin"] = proxyOptions.target;
-        },
+        changeOrigin: false,
         logLevel: 'debug',
-        logProvider: logProvider
+        logProvider: logProvider,
+        headers: {
+            "Origin": env.HOST_NAME
+        }
     },
 };

@@ -10,6 +10,9 @@
 		},
 		{
 			"path": "alfresco-ng2-components"
+		},
+		{
+			"path": "upload-test-data"
 		}
 	],
 	"settings": {
