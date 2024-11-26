@@ -1,0 +1,11 @@
+{
+    "rest-client.environmentVariables": {
+
+        "$shared": {},
+        "test": {
+            "contentType": "application/json",
+            "api-endpoint": "alfresco/api/-default-/public/alfresco/versions/1",
+            "user": "admin"
+        }
+    }
+}

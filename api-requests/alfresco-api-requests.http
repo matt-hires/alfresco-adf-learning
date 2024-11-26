@@ -1,0 +1,80 @@
+# please create .env file in current directory and set hostname
+@hostname={{$dotenv HOSTNAME}}
+
+### 
+
+# @prompt password
+GET https://{{hostname}}/{{api-endpoint}}/people/{{user}}/preferences
+Content-Type: {{contentType}}
+Authorization: Basic {{user}}:{{password}}
+
+### 
+
+# @prompt password
+POST https://{{hostname}}/share/page/dologin
+Content-Type: application/x-www-form-urlencoded
+
+username={{user}}&password={{password}}
+
+###
+
+POST https://{{hostname}}/share/proxy/alfresco/api/people/admin/preferences
+Content-Type: {{contentType}} 
+
+{
+    "org": {
+        "alfresco": {
+            "share": {
+                "documentList": {
+                    "sortAscending": false,
+                    "viewRendererName": "simple"
+                }
+            }
+        }
+    }
+}
+
+### get all renditions per node
+
+@nodeId=216a78a9-a9ef-41f2-a753-92f468b61eba
+@versionId=1.4
+
+# @prompt password
+GET https://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/renditions
+Content-Type: {{contentType}}
+Authorization: Basic {{user}}:{{password}}
+
+### get all renditions per node with given version 
+
+# @prompt password
+GET https://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/versions/{{versionId}}/renditions
+Content-Type: {{contentType}}
+Authorization: Basic {{user}}:{{password}}
+
+### create pdf rendition for node with given version 
+
+@renditionId = pdf
+
+# @prompt password
+POST https://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/versions/{{versionId}}/renditions
+Content-Type: {{contentType}}
+Authorization: Basic {{user}}:{{password}}
+
+{
+    "id": "{{renditionId}}"
+}
+
+### get rendition information for specific file
+
+# @prompt password
+#
+GET https://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/versions/{{versionId}}/renditions/{{renditionId}}
+Content-Type: {{contentType}}
+Authorization: Basic {{user}}:{{password}}
+
+### delete rendition with version and file
+
+# @prompt password
+DELETE https://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/versions/{{versionId}}/renditions/{{renditionId}}
+Content-Type: {{contentType}}
+Authorization: Basic {{user}}:{{password}}

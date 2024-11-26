@@ -28,7 +28,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class FileViewComponent implements OnInit {
     nodeId: string = null;
-    versionId: string = null;
 
     constructor(
         private router: Router,
@@ -45,7 +44,6 @@ export class FileViewComponent implements OnInit {
                     (node) => {
                         if (node && node.isFile) {
                             this.nodeId = id;
-                            this.versionId = node?.properties['cm:versionLabel'] ?? '';
                             return;
                         }
                         this.router.navigate(['/files', id]);
@@ -72,8 +70,8 @@ export class FileViewComponent implements OnInit {
 
         this.nodeApiService.getNode(this.nodeId)
             .subscribe(node => {
-                this.versionId = node?.properties['cm:versionLabel'] ?? '';
-                console.log(`Update node ${node.id} to version: ${this.versionId}`);
+                console.log(`Update node ${node.id}`);
+                this.nodeApiService.nodeUpdated.next(node);
             });
     }
 }
