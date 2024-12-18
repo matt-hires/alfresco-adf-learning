@@ -1,24 +1,25 @@
 # please create .env file in current directory and set hostname
 @hostname={{$dotenv HOSTNAME}}
+@scheme={{$dotenv SCHEME}}
 
 ### 
 
 # @prompt password
-GET https://{{hostname}}/{{api-endpoint}}/people/{{user}}/preferences
+GET {{scheme}}://{{hostname}}/{{api-endpoint}}/people/{{user}}/preferences
 Content-Type: {{contentType}}
 Authorization: Basic {{user}}:{{password}}
 
 ### 
 
 # @prompt password
-POST https://{{hostname}}/share/page/dologin
+POST {{scheme}}://{{hostname}}/share/page/dologin
 Content-Type: application/x-www-form-urlencoded
 
 username={{user}}&password={{password}}
 
 ###
 
-POST https://{{hostname}}/share/proxy/alfresco/api/people/admin/preferences
+POST {{scheme}}://{{hostname}}/share/proxy/alfresco/api/people/admin/preferences
 Content-Type: {{contentType}} 
 
 {
@@ -36,18 +37,18 @@ Content-Type: {{contentType}}
 
 ### get all renditions per node
 
-@nodeId=216a78a9-a9ef-41f2-a753-92f468b61eba
-@versionId=1.6
+@nodeId=cc869d71-fe10-42e7-869d-71fe10b2e7a5
+@versionId=1.2
 
 # @prompt password
-GET https://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/renditions
+GET {{scheme}}://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/renditions
 Content-Type: {{contentType}}
 Authorization: Basic {{user}}:{{password}}
 
 ### get all renditions per node with given version 
 
 # @prompt password
-GET https://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/versions/{{versionId}}/renditions
+GET {{scheme}}://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/versions/{{versionId}}/renditions
 Content-Type: {{contentType}}
 Authorization: Basic {{user}}:{{password}}
 
@@ -56,7 +57,7 @@ Authorization: Basic {{user}}:{{password}}
 @renditionId = pdf
 
 # @prompt password
-POST https://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/versions/{{versionId}}/renditions
+POST {{scheme}}://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/versions/{{versionId}}/renditions
 Content-Type: {{contentType}}
 Authorization: Basic {{user}}:{{password}}
 
@@ -68,13 +69,13 @@ Authorization: Basic {{user}}:{{password}}
 
 # @prompt password
 #
-GET https://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/versions/{{versionId}}/renditions/{{renditionId}}
+GET {{scheme}}://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/versions/{{versionId}}/renditions/{{renditionId}}
 Content-Type: {{contentType}}
 Authorization: Basic {{user}}:{{password}}
 
 ### delete rendition with version and file
 
 # @prompt password
-DELETE https://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/versions/{{versionId}}/renditions/{{renditionId}}
+DELETE {{scheme}}://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/versions/{{versionId}}/renditions/{{renditionId}}
 Content-Type: {{contentType}}
 Authorization: Basic {{user}}:{{password}}

@@ -10,7 +10,7 @@
             "detail": "ng serve app with host",
             "options": {
                 "env": {
-                    "HOST_NAME": "https://${input:hostname}"
+                    "HOST_NAME": "${input:scheme}://${input:hostname}"
                 }
             },
         },
@@ -29,6 +29,12 @@
             "type": "promptString",
             "description": "type in hostname of remote alfresco server",
             "default": "localhost"
+        },
+        {
+            "id": "scheme",
+            "type": "promptString",
+            "description": "type in desired server scheme",
+            "default": "http"
         }
     ]
 }
