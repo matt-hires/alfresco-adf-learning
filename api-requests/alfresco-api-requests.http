@@ -37,7 +37,7 @@ Content-Type: {{contentType}}
 ### get all renditions per node
 
 @nodeId=216a78a9-a9ef-41f2-a753-92f468b61eba
-@versionId=1.4
+@versionId=1.6
 
 # @prompt password
 GET https://{{hostname}}/{{api-endpoint}}/nodes/{{nodeId}}/renditions
