@@ -2,3 +2,7 @@
 	path = alfresco-ng2-components
 	url = https://github.com/matt-hires/alfresco-ng2-components.git
 	branch = alfresco-6.1.0
+[submodule "acs-deployment"]
+	path = acs-deployment
+	url = https://github.com/Alfresco/acs-deployment
+	branch = master
