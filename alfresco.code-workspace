@@ -16,6 +16,9 @@
 		},
 		{
 			"path": "acs-deployment"
+		},
+		{
+			"path": "env"
 		}
 	],
 	"settings": {
