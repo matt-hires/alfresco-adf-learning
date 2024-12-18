@@ -20,5 +20,15 @@
 	],
 	"settings": {
 		"prettier.useEditorConfig": true,
+	},
+	"extensions": {
+		"recommendations": [
+			"waderyan.gitblame",
+			"donjayamanne.githistory",
+			"codezombiech.gitignore",
+			"yzhang.markdown-all-in-one",
+			"editorconfig.editorconfig",
+			"redhat.vscode-yaml"
+		]
 	}
 }
