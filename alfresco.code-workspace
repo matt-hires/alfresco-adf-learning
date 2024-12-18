@@ -13,6 +13,9 @@
 		},
 		{
 			"path": "upload-test-data"
+		},
+		{
+			"path": "acs-deployment"
 		}
 	],
 	"settings": {
