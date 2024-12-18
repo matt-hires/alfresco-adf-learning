@@ -1,5 +1,5 @@
 #!/bin/bash
 
-DOCKER="/mnt/c/Program Files/RedHat/Podman/podman.exe"
+DOCKER="podman"
 
 "$DOCKER" rm -f aps-admin
